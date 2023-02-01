@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { textContext } from "./Context";
+import { globalState } from "./Context";
 
+import { useReducer } from "react";
+import { initState, reducer } from "./reducer";
 
-function ProviderContext({children}) {
-    const [text ,setText] = useState('hello') 
+function ProviderGlobalState({children}) {
 
-    const fcGlobal = (e) => { setText(e) }
+    const [state, dispatch] = useReducer(reducer, initState)
+
 
     return ( 
-        <textContext.Provider value = {{text ,fc: fcGlobal}}>
+        <globalState.Provider value = {[state, dispatch]}>
             {children}
-        </textContext.Provider>
+        </globalState.Provider>
      );
 }
 
-export default ProviderContext;
+export default ProviderGlobalState;

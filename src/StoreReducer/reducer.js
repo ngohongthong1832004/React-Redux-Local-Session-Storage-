@@ -13,22 +13,22 @@ export const initState = {
 export const reducer = ( state, action ) => {
     switch(action.typeAction){
         case FIX_NAME :
-            console.log("action :",action)
+            // console.log("action :",action)
             return {
                 ...state,
                 name : action.payload 
             }
         case ADD_JOB :
-            console.log("action :",action)
+            // console.log("action :",action)
 
-            console.log(state)
+            // console.log(state)
 
             return {
                 ...state,
                 jobs : [ ...state.jobs, action.payload ]
             }
         case DELETE_JOB :
-            console.log("action :",action)         
+            // console.log("action :",action)         
 
             const newJobs = [...state.jobs]
 
@@ -39,7 +39,7 @@ export const reducer = ( state, action ) => {
                 jobs : newJobs
             }
         case EDIT_JOB :
-            console.log("action :",action)         
+            // console.log("action :",action)         
 
             state.jobs[action.index] = action.payload
 

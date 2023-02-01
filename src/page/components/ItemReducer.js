@@ -1,10 +1,10 @@
-import { useReducer, useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 
 
-import { deleteJob, editJob } from "C:/Users/HP/workPlace/Redux-local-session/my-app/src/StoreReducer/actions"
-import {reducer, initState} from 'C:/Users/HP/workPlace/Redux-local-session/my-app/src/StoreReducer/reducer'
+import { deleteJob, editJob } from "../../StoreReducer/actions";
+import { globalState } from "../../StoreReducer/Context";
 
-function ItemReducer( {item, index, cb} ) {
+function ItemReducer( {item, index} ) {
 
     const editInputRef = useRef()
 
@@ -12,9 +12,9 @@ function ItemReducer( {item, index, cb} ) {
     const [editValue, setEditValue] = useState('')
 
 
-    const [state, dispatch] = useReducer( reducer, initState )
+    const [state, dispatch] = useContext(globalState)
 
-    console.log(state.jobs)
+    // console.log(state.jobs)
 
    
 
@@ -32,7 +32,7 @@ function ItemReducer( {item, index, cb} ) {
         {" "}
         {index + 1}{" "}
       </span>
-      <div style={{ padding: "10px", width: "35vw", display: "flex" }}>
+      <div style={{ padding: "10px", width: "55vw", display: "flex" }}>
         {isEdit ? (
           <input
             value={editValue}
@@ -57,7 +57,7 @@ function ItemReducer( {item, index, cb} ) {
             onClick={() => {
               dispatch(editJob(editValue, index));
               setIsEdit(false);
-              cb(Math.random())
+             
             }}
           >
             Save
@@ -77,7 +77,7 @@ function ItemReducer( {item, index, cb} ) {
         </button>
       )}
       <button
-        onClick={() => {dispatch(deleteJob(index)) ;  cb(Math.random())}}
+        onClick={() => {dispatch(deleteJob(index))}}
         style={{ height: "30px", margin: "10px 5px" }}
       >
         Delete

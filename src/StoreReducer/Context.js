@@ -1,4 +1,4 @@
 import { createContext } from "react";
 
-export const textContext = createContext()
+export const globalState = createContext()
 
