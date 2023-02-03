@@ -45,7 +45,7 @@ function ReducerContextCom() {
                                 return (
                                     <ItemReducer item = {item} index = {index} key = {index} />
                                 )
-                        })}
+                            })}
                         </ul>
                     </div>
                 </div>

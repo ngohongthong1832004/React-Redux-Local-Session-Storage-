@@ -1,31 +1,36 @@
-import { useContext, useState, useRef } from "react";
+import { Typography, Divider } from 'antd';
 
 import Home from "./Home";
-import { globalState } from "../StoreReducer/Context";
-import { addJob } from "../StoreReducer/actions";
+import Filters from "./components/Fillters";
+import TodoList from "./components/TodoLists";
+
+const { Title } = Typography;
 
 function ReduxCom() {
-    const addInputRef = useRef()
 
-    const [addValue , setAadValue] = useState('')
 
-    const [state, dispatch] = useContext(globalState)
-
-    // console.log([state , dispatch])
-
-    return ( 
-        <Home>
-            <div className="Redux">
-                <h1>Redux</h1>
-                <div>
-                    <div>
-                        <input ref={addInputRef} value = {addValue} onChange = { e => setAadValue(e.target.value) }/>
-                        <button onClick={ () => {dispatch(addJob(addValue)) ; addInputRef.current.focus() ; setAadValue('')} }>Add job</button>
-                    </div>
-                </div>
-            </div>
-        </Home>
-     );
+  return (
+    <Home>
+      <div
+        style={{
+          width: 350,
+          margin: "20px auto 0 auto",
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "white",
+          padding: 20,
+          boxShadow: "0 0 10px 4px #bfbfbf",
+          borderRadius: 5,
+          height: "80vh",
+        }}
+      >
+        <Title style={{ textAlign: "center" }}>TODO APP</Title>
+        <Filters />
+        <Divider />
+        <TodoList />
+      </div>
+    </Home>
+  );
 }
 
 export default ReduxCom;
