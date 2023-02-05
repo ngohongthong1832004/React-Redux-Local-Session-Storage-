@@ -39,12 +39,12 @@ export default function TodoList() {
     setAddValue('')
     addInputRef.current.focus()
   }
+
   
-  console.log(todoList)
   return (
     <Row style={{ height: 'calc(100% - 40px)' , overflowY: 'scroll'}}>
       <Col span={24} style={{ height: 'calc(100% - 40px)', overflowY: 'scroll'}}>
-        {todoList?.map(todo =>  <Todo name={todo.name} priority={todo.priority} key = {todo.id} completed = {todo.completed}/>)}
+        {todoList?.map(todo =>  <Todo name={todo.name} priority={todo.priority} key = {todo.id} completed = {todo.completed} id = {todo.id}/>)}
       </Col>
       <Col span={24}>
         <Input.Group style={{ display: 'flex' }} compact>

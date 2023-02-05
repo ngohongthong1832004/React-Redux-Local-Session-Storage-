@@ -19,3 +19,24 @@ export const statusFilterChange = payload =>{
         payload
     }
 }
+
+export const priorityFilterChange = payload =>{
+    return {
+        type : 'filters/priorityFilterChange',
+        payload
+    }
+}
+
+export const checkedStatusChange = payload =>{
+    return {
+        type : 'todoList/checkedStatusChange',
+        payload
+    }
+}
+
+export const deleteChange = payload =>{
+    return {
+        type : 'todoList/deleteTodo',
+        payload
+    }
+}

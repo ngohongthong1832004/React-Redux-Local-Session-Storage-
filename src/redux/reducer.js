@@ -4,12 +4,12 @@ const initState = {
     filter : {
         search : '',
         status : 'All',
-        priority : ''
+        priority : '',
     },
     todoList : [
-        { id : 1 , name : "hello", completed : false , priority : 'Hight'},
-        { id : 2 , name : "Bap hong Pine", completed : true , priority : 'Low'},
-        { id : 3 , name : "BE Nhi", completed : false , priority : 'Medium'}, 
+        { id : 1 , name : "Learn React", completed : false , priority : 'High'},
+        { id : 2 , name : "Learn Redux", completed : false , priority : 'High'},
+        { id : 3 , name : "Learn nodeJS", completed : false , priority : 'Low'}, 
     ]
 }
 
@@ -18,10 +18,37 @@ const rootReducer = ( state = initState, action) => {
     console.log(action)
     switch(action.type){
         case 'todoList/addTodo':
-            return {
+            const newState =  {
                 ...state,
                 todoList : [...state.todoList, action.payload]
             }
+            localStorage.setItem('innitState',JSON.stringify(newState))
+            return newState
+        case 'todoList/deleteTodo':
+            console.log((JSON.parse(localStorage.getItem('innitState'))))
+            let position
+            const newTodo = [...state.todoList]
+            newTodo.map((todo, index) => {
+                if (todo.id === action.payload){
+                    position = index 
+                }
+            })
+            newTodo.splice(position,1)
+
+
+            return {
+                ...state,
+                todoList : newTodo
+            }
+        case 'todoList/checkedStatusChange' :
+            return {
+                ...state,
+                todoList : state.todoList.map((todo) => {
+                    return todo.id === action.payload ? { ...todo, completed : !todo.completed } : {...todo}
+                } )
+            }
+
+
         case 'filters/searchFilterChange' :
             return {
                 ...state,
@@ -36,6 +63,14 @@ const rootReducer = ( state = initState, action) => {
                 filter : {
                     ...state.filter,
                     status : action.payload
+                }
+            }
+        case 'filters/priorityFilterChange' :
+            return {
+                ...state,
+                filter : {
+                    ...state.filter,
+                    priority : action.payload
                 }
             }
         case 'load':
