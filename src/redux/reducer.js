@@ -1,17 +1,4 @@
-
-
-const initState = {
-    filter : {
-        search : '',
-        status : 'All',
-        priority : '',
-    },
-    todoList : [
-        { id : 1 , name : "Learn React", completed : false , priority : 'High'},
-        { id : 2 , name : "Learn Redux", completed : false , priority : 'High'},
-        { id : 3 , name : "Learn nodeJS", completed : false , priority : 'Low'}, 
-    ]
-}
+import { initState } from "./initState"
 
 
 const rootReducer = ( state = initState, action) => {
@@ -22,62 +9,79 @@ const rootReducer = ( state = initState, action) => {
                 ...state,
                 todoList : [...state.todoList, action.payload]
             }
-            localStorage.setItem('innitState',JSON.stringify(newState))
+            localStorage.setItem('initState',JSON.stringify(newState))
             return newState
         case 'todoList/deleteTodo':
-            console.log((JSON.parse(localStorage.getItem('innitState'))))
             let position
             const newTodo = [...state.todoList]
             newTodo.map((todo, index) => {
                 if (todo.id === action.payload){
                     position = index 
                 }
-            })
+            })// eslint-disable-next-line
             newTodo.splice(position,1)
 
 
-            return {
+            const newState1 =  {
                 ...state,
                 todoList : newTodo
             }
+
+            localStorage.setItem('initState',JSON.stringify(newState1))
+            return newState1
         case 'todoList/checkedStatusChange' :
-            return {
+            const newState2  = { 
                 ...state,
                 todoList : state.todoList.map((todo) => {
                     return todo.id === action.payload ? { ...todo, completed : !todo.completed } : {...todo}
                 } )
             }
 
+            localStorage.setItem('initState',JSON.stringify(newState2))
+            return newState2
 
         case 'filters/searchFilterChange' :
-            return {
+            const newState3 =  {
                 ...state,
                 filter : {
                     ...state.filter,
                     search : action.payload,
                 }
             }
+
+            localStorage.setItem('initState',JSON.stringify(newState3))
+
+            return newState3
         case 'filters/statusFilterChange' :
-            return {
+            const newState4 =  {
                 ...state,
                 filter : {
                     ...state.filter,
                     status : action.payload
                 }
             }
+
+            localStorage.setItem('initState',JSON.stringify(newState4))
+            return newState4
         case 'filters/priorityFilterChange' :
-            return {
+            const newState5 = {
                 ...state,
                 filter : {
                     ...state.filter,
                     priority : action.payload
                 }
             }
+            localStorage.setItem('initState',JSON.stringify(newState5))
+
+            return newState5
         case 'load':
+            console.log("start load : Pine")
+        
             return {
                 ...state
             }
         default :
+            break;
     }
 }
 
