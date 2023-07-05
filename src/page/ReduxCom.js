@@ -17,9 +17,9 @@ function ReduxCom() {
           margin: "20px auto 0 auto",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "white",
+          backgroundColor: "#d2f6fb",
           padding: 20,
-          boxShadow: "0 0 10px 4px #bfbfbf",
+          boxShadow: "0 0 10px 4px black",
           borderRadius: 5,
           height: "80vh",
         }}

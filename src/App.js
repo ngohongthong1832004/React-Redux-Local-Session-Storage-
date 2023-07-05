@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element = {<Home/>}/>
           <Route path="redux" element={<ReduxCom />} />
-          <Route path="reducer-context" element={<ReducerContextCom />}/>
+          {/* <Route path="reducer-context" element={<ReducerContextCom />}/> */}
         </Routes>
       </BrowserRouter>
     </div>
